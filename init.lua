@@ -341,4 +341,4 @@ require('lualine').setup {
 }
 
 vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float(nil, { scope = "line" })<CR>', { noremap = true, silent = true })
-
+vim.api.nvim_set_keymap('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true })
