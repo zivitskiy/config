@@ -39,6 +39,14 @@ if not vim.loop.fs_stat(vim.fn.stdpath("data") .. "/lazy/lazy.nvim") then
 end
 
 require('lazy').setup({
+
+  ui = {
+    wrap = true,
+    border = "shadow",
+    title = "Lazy",
+    title_pos = "center"
+  },
+
   'nvim-treesitter/nvim-treesitter',
   'luckasRanarison/nvim-devdocs',
   'akinsho/toggleterm.nvim',
@@ -109,6 +117,7 @@ require('lazy').setup({
   'hrsh7th/cmp-path',
   "muniftanjim/nui.nvim",
   "nvimdev/lspsaga.nvim",
+  { 'yamatsum/nvim-cursorline', config = function() require('nvim-cursorline').setup() end },
 })
     vim.keymap.set("n", "<leader>xl", "<cmd>XcodebuildToggleLogs<cr>", { desc = "Toggle Xcodebuild Logs" })
     vim.keymap.set("n", "<leader>xb", "<cmd>XcodebuildBuild<cr>", { desc = "Build Project" })
@@ -342,3 +351,17 @@ require('lualine').setup {
 
 vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float(nil, { scope = "line" })<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true })
+
+vim.cmd([[
+  augroup AutoSave
+    autocmd!
+    autocmd BufLeave,FocusLost * silent! wall
+  augroup END
+]])
+
+vim.cmd([[
+  augroup FormatAutogroup
+    autocmd!
+    autocmd BufWritePost *,.swift,*.js,*.rs,*.py,*.lua,*.go,*.php FormatWrite
+  augroup END
+]])
