@@ -13,6 +13,10 @@ vim.o.hlsearch = true
 vim.o.incsearch = true
 vim.cmd('syntax on')
 vim.cmd('colorscheme xcodedark')
+vim.api.nvim_command('command! Q quit')
+vim.api.nvim_command('command! W write')
+vim.api.nvim_command('command! WQ wq')
+vim.api.nvim_command('command! Wq wq')
 
 vim.g.mapleader = " "  -- space
 
